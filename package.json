@@ -1,7 +1,7 @@
 {
   "name": "sidelifter",
   "version": "0.0.0",
-  "description": "An awesome package",
+  "description": "Utilities for working with Docker containers",
   "keywords": [],
   "homepage": "https://github.com/splayd/sidelifter",
   "bugs": "https://github.com/splayd/sidelifter/issues",
@@ -14,26 +14,24 @@
     "release": "semantic-release",
     "prepack": "build-esm"
   },
-  "dependencies": {},
+  "dependencies": {
+    "dockerode": "^2.5.6"
+  },
   "devDependencies": {
-    "@babel/core": "^7.0.1",
-    "@babel/register": "^7.0.0",
     "ava": "^1.0.0-beta.8",
-    "babel-preset-diff": "^6.0.3",
     "build-esm": "^4.1.1",
     "flow-bin": "^0.80.0",
     "flow-typed": "^2.5.1",
+    "overdub": "^1.2.0",
     "semantic-release": "^15.9.15",
     "standard-esnext": "^5.1.7"
   },
-  "babel": {
-    "presets": [
-      "diff"
-    ]
-  },
   "ava": {
-    "require": [
-      "@babel/register"
-    ]
+    "require": "overdub/register",
+    "babel": {
+      "testOptions": {
+        "extends": "overdub/babel"
+      }
+    }
   }
 }
