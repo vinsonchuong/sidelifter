@@ -1,5 +1,8 @@
 # sidelifter
+![npm](https://img.shields.io/npm/v/sidelifter.svg)
 [![Build Status](https://travis-ci.org/splayd/sidelifter.svg?branch=master)](https://travis-ci.org/splayd/sidelifter)
+[![dependencies Status](https://david-dm.org/splayd/sidelifter/status.svg)](https://david-dm.org/splayd/sidelifter)
+[![devDependencies Status](https://david-dm.org/splayd/sidelifter/dev-status.svg)](https://david-dm.org/splayd/sidelifter?type=dev)
 
 Utilities for working with Docker containers
 
