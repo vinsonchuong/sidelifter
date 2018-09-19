@@ -2,6 +2,7 @@
 import test from 'ava'
 import { startContainer, waitForContainer, removeContainer } from 'sidelifter'
 import getStream from 'get-stream'
+import { openDatabase } from 'rumor-mill'
 
 test('starting a script in a container', async t => {
   const container = await startContainer({
@@ -52,7 +53,9 @@ test('starting a container that exposes a port', async t => {
     }
   })
 
-  t.true(Number.isInteger(container.ports.get(3306)))
+  const port = container.ports.get(3306)
+  await openDatabase(`mysql://user:password@127.0.0.1:${String(port)}/database`)
+  t.pass()
 
   await removeContainer(container)
 })

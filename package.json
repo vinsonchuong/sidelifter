@@ -16,14 +16,15 @@
   },
   "dependencies": {
     "dockerode": "^2.5.6",
-    "memory-streams": "^0.1.3"
+    "stream-buffers": "^3.0.2"
   },
   "devDependencies": {
     "ava": "^1.0.0-beta.8",
     "build-esm": "^4.1.1",
-    "flow-bin": "^0.80.0",
+    "flow-bin": "^0.81.0",
     "flow-typed": "^2.5.1",
     "overdub": "^1.2.0",
+    "rumor-mill": "^2.1.3",
     "semantic-release": "^15.9.15",
     "standard-esnext": "^5.1.7"
   },

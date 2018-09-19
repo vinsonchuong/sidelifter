@@ -1,7 +1,7 @@
 /* @flow */
 import type { Container } from 'sidelifter/interface'
 import Docker from 'dockerode'
-import { ReadableStream } from 'memory-streams'
+import { ReadableStreamBuffer } from 'stream-buffers'
 
 export default async function({
   image,
@@ -37,21 +37,18 @@ export default async function({
     stdout: true,
     stderr: true
   })
-  const stdout = new ReadableStream()
-  const stderr = new ReadableStream()
+  const stdout = new ReadableStreamBuffer()
+  const stderr = new ReadableStreamBuffer()
+
+  stdin.on('end', () => {
+    stdout.stop()
+    stderr.stop()
+  })
 
   container.modem.demuxStream(
     stdin,
-    {
-      write: data => {
-        stdout.append(data)
-      }
-    },
-    {
-      write: data => {
-        stderr.append(data)
-      }
-    }
+    { write: data => stdout.put(data) },
+    { write: data => stderr.put(data) }
   )
 
   await container.start()
