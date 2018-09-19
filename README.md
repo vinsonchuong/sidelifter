@@ -65,7 +65,7 @@ host port.
 Waits for the `Cmd` that the container is running to exit.
 
 ##### Parameters
-* `container` ([Promise<Container>](interface/container.js))
+* `container` ([Container](interface/container.js))
 
 ##### Returns
 * `promise` (Promise<void>)
@@ -74,7 +74,7 @@ Waits for the `Cmd` that the container is running to exit.
 Stops and destroys the container.
 
 ##### Parameters
-* `container` ([Promise<Container>](interface/container.js))
+* `container` ([Container](interface/container.js))
 
 ##### Returns
 * `promise` (Promise<void>)
