@@ -1,5 +1,6 @@
 /* @flow */
 import type { Container } from 'sidelifter/interface'
+import { log } from 'sidelifter/lib'
 import Docker from 'dockerode'
 import { ReadableStreamBuffer } from 'stream-buffers'
 
@@ -14,10 +15,12 @@ export default async function({
 }): Promise<Container> {
   const docker = new Docker()
 
+  log('Pulling %s from Docker Hub', image)
   const pullOutputStream = await docker.pull(image)
   await new Promise(resolve => {
     docker.modem.followProgress(pullOutputStream, resolve)
   })
+  log('Finished pulling %s from Docker Hub', image)
 
   const container = await docker.createContainer({
     Image: image,

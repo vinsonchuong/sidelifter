@@ -78,3 +78,11 @@ Stops and destroys the container.
 
 ##### Returns
 * `promise` (Promise<void>)
+
+### Debugging
+Debug logging can be enabled by setting the environment variable
+`NODE_DEBUG=sidelifter`.
+
+See the
+[Node.js documentation](https://nodejs.org/api/util.html#util_util_debuglog_section)
+for more information.
