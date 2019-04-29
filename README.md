@@ -9,6 +9,7 @@ Utilities for working with Docker containers
 ## Example
 
 ```js
+import * as path from 'path'
 import { startContainer, removeContainer } from 'sidelifter'
 import { openDatabase } from 'rumor-mill'
 
@@ -20,6 +21,9 @@ async function run() {
       MYSQL_DATABASE: 'database',
       MYSQL_USER: 'user',
       MYSQL_PASSWORD: 'password'
+    },
+    mount: {
+      [path.resolve()]: '/root/app'
     }
   })
 
@@ -56,6 +60,7 @@ host port.
   * `image` (string): The name and tag of a Docker image
   * `env` ({ [string]: string }): Environment variables to be set within the
     container
+  * `mount` ({ [string]: string }): Directories to mount within the container
   * `cmd` (string): An optional command to run within the Docker container
 
 ##### Returns

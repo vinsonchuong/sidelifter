@@ -7,10 +7,12 @@ import { ReadableStreamBuffer } from 'stream-buffers'
 export default async function({
   image,
   env = {},
+  mount = {},
   cmd
 }: {
   image: string,
   env?: { [string]: string },
+  mount?: { [string]: string },
   cmd?: Array<string>
 }): Promise<Container> {
   const docker = new Docker()
@@ -25,7 +27,10 @@ export default async function({
   const container = await docker.createContainer({
     Image: image,
     Env: Object.keys(env).map(key => `${key}=${env[key]}`),
-    PublishAllPorts: true,
+    HostConfig: {
+      Binds: Object.keys(mount).map(hostDir => `${hostDir}:${mount[hostDir]}`),
+      PublishAllPorts: true
+    },
     Tty: false,
     AttachStdin: true,
     OpenStdin: true,

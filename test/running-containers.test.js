@@ -1,5 +1,6 @@
 /* @flow */
 import test from 'ava'
+import * as path from 'path'
 import { startContainer, waitForContainer, removeContainer } from 'sidelifter'
 import getStream from 'get-stream'
 import { openDatabase } from 'rumor-mill'
@@ -56,6 +57,24 @@ test('starting a container that exposes a port', async t => {
   const port = container.ports.get(3306)
   await openDatabase(`mysql://user:password@127.0.0.1:${String(port)}/database`)
   t.pass()
+
+  await removeContainer(container)
+})
+
+test('mounting a directory in a container', async t => {
+  const container = await startContainer({
+    image: 'node:latest',
+    mount: {
+      [path.resolve()]: '/root/sidelifter'
+    },
+    cmd: ['ls', '/root/sidelifter']
+  })
+
+  await waitForContainer(container)
+
+  const output = await getStream(container.stdout)
+  t.true(output.includes('README.md'))
+  t.true(output.includes('package.json'))
 
   await removeContainer(container)
 })
