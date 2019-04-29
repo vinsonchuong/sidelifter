@@ -61,7 +61,7 @@ host port.
   * `env` ({ [string]: string }): Environment variables to be set within the
     container
   * `mount` ({ [string]: string }): Directories to mount within the container
-  * `cmd` (string): An optional command to run within the Docker container
+  * `cmd` (Array<string>): An optional command to run within the Docker container
 
 ##### Returns
 * `container` ([Promise<Container>](interface/container.js))
