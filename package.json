@@ -21,11 +21,11 @@
   "devDependencies": {
     "ava": "^1.4.1",
     "build-esm": "^4.2.1",
-    "flow-bin": "^0.98.0",
+    "flow-bin": "^0.98.1",
     "flow-typed": "^2.5.1",
     "overdub": "^2.3.1",
-    "rumor-mill": "^3.2.2",
-    "semantic-release": "^15.13.3",
+    "rumor-mill": "^3.2.3",
+    "semantic-release": "^15.13.12",
     "standard-esnext": "^5.3.0"
   },
   "ava": {
