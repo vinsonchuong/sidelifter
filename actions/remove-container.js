@@ -1,6 +1,3 @@
-/* @flow */
-import type { Container } from 'sidelifter/interface'
-
-export default async function({ dockerode: { container } }: Container) {
-  await container.remove({ force: true })
+export default async function ({dockerode: {container}}) {
+  await container.remove({force: true})
 }

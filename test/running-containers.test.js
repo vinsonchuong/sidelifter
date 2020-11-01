@@ -1,11 +1,10 @@
-/* @flow */
 import test from 'ava'
-import * as path from 'path'
-import { startContainer, waitForContainer, removeContainer } from 'sidelifter'
+import path from 'path'
+import {startContainer, waitForContainer, removeContainer} from '../index.js'
 import getStream from 'get-stream'
-import { openDatabase } from 'rumor-mill'
+import rm from 'rumor-mill'
 
-test('starting a script in a container', async t => {
+test('starting a script in a container', async (t) => {
   const container = await startContainer({
     image: 'node:latest',
     env: {
@@ -27,7 +26,7 @@ test('starting a script in a container', async t => {
   await removeContainer(container)
 })
 
-test('starting an interactive prompt in a container', async t => {
+test('starting an interactive prompt in a container', async (t) => {
   const container = await startContainer({
     image: 'node:latest'
   })
@@ -43,7 +42,7 @@ test('starting an interactive prompt in a container', async t => {
   await removeContainer(container)
 })
 
-test('starting a container that exposes a port', async t => {
+test('starting a container that exposes a port', async (t) => {
   const container = await startContainer({
     image: 'mysql:5',
     env: {
@@ -55,13 +54,15 @@ test('starting a container that exposes a port', async t => {
   })
 
   const port = container.ports.get(3306)
-  await openDatabase(`mysql://user:password@127.0.0.1:${String(port)}/database`)
+  await rm.openDatabase(
+    `mysql://user:password@127.0.0.1:${String(port)}/database`
+  )
   t.pass()
 
   await removeContainer(container)
 })
 
-test('mounting a directory in a container', async t => {
+test('mounting a directory in a container', async (t) => {
   const container = await startContainer({
     image: 'node:latest',
     mount: {

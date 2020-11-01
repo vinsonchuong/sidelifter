@@ -1,6 +1,3 @@
-/* @flow */
-import type { Container } from 'sidelifter/interface'
-
-export default async function({ dockerode: { container } }: Container) {
+export default async function ({dockerode: {container}}) {
   await container.wait()
 }
