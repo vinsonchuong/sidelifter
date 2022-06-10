@@ -20,7 +20,7 @@
   "devDependencies": {
     "ava": "^3.13.0",
     "rumor-mill": "^3.2.3",
-    "semantic-release": "^17.2.2",
+    "semantic-release": "^19.0.3",
     "xo": "^0.34.1"
   },
   "ava": {
